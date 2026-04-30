@@ -1,0 +1,8 @@
+<launch>
+  <arg name="route_id" default="1" />
+  <arg name="config_file" default="$(find inspection_nav)/config/point$(arg route_id).yaml" />
+
+  <node pkg="inspection_nav" type="goal_recorder_node" name="goal_recorder" args="$(arg route_id)" output="screen">
+    <param name="config_file" value="$(arg config_file)" />
+  </node>
+</launch>

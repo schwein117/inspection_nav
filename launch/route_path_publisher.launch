@@ -1,0 +1,15 @@
+<launch>
+  <arg name="route_id" default="1" />
+  <arg name="path_topic" default="/inspection_nav/patrol_path" />
+  <arg name="path_frame" default="map" />
+  <arg name="publish_empty_on_startup" default="false" />
+  <arg name="publish_route_on_startup" default="true" />
+
+  <node pkg="inspection_nav" type="route_path_publisher_node" name="route_path_publisher" args="$(arg route_id)" output="screen">
+    <param name="startup_route_id" value="$(arg route_id)" />
+    <param name="path_topic" value="$(arg path_topic)" />
+    <param name="path_frame" value="$(arg path_frame)" />
+    <param name="publish_empty_on_startup" value="$(arg publish_empty_on_startup)" />
+    <param name="publish_route_on_startup" value="$(arg publish_route_on_startup)" />
+  </node>
+</launch>

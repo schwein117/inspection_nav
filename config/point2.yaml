@@ -1,0 +1,111 @@
+goals:
+  - index: 1
+    name: patrol_point_1
+    position:
+      x: 2.164734535214107
+      y: 7.240711112257644e-08
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 4.467062410557779e-09
+      w: 1
+  - index: 2
+    name: patrol_point_2
+    position:
+      x: 2.164697829608126
+      y: 0.000182786027041398
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.7318838986520267
+      w: 0.6814293498917623
+  - index: 3
+    name: patrol_point_3
+    position:
+      x: 2.098044141155829
+      y: -0.9365820715540761
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.7319002988882112
+      w: 0.6814117349204866
+  - index: 4
+    name: patrol_point_4
+    position:
+      x: 2.098295946841417
+      y: -0.9366571370492937
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.9989388784002903
+      w: -0.04605558837286178
+  - index: 5
+    name: patrol_point_5
+    position:
+      x: 0.2986567418416371
+      y: -1.102014564385871
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.9989370166618209
+      w: -0.04609595147929516
+  - index: 6
+    name: patrol_point_6
+    position:
+      x: 0.2987950854836635
+      y: -1.102037947457598
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7810487044874533
+      w: 0.6244701123500411
+  - index: 7
+    name: patrol_point_7
+    position:
+      x: 0.08059947209372638
+      y: -0.1362416539451878
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7813965547198214
+      w: 0.6240347941196832
+  - index: 8
+    name: patrol_point_8
+    position:
+      x: 0.08032995433796493
+      y: -0.1358352795936534
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.03155145129055423
+      w: 0.9995021290229753
+  - index: 9
+    name: patrol_point_9
+    position:
+      x: 0.2005461824159206
+      y: -0.3440786352418438
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.0880766583405428
+      w: 0.9961136994618454
+  - index: 10
+    name: patrol_point_10
+    position:
+      x: 2.410687202251259e-08
+      y: 3.021006708764729e-08
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 1.960932519667504e-09
+      w: 1

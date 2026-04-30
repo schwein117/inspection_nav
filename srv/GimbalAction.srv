@@ -1,0 +1,10 @@
+std_msgs/Header header
+int32 route_id
+int32 goal_index
+int32 goal_total
+geometry_msgs/Pose target_pose
+string action_name
+---
+bool success
+bool continue_nav
+string message

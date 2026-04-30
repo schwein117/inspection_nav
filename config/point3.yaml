@@ -1,0 +1,188 @@
+goals:
+  - index: 1
+    name: patrol_point_1
+    position:
+      x: 1.414193619903048e-07
+      y: 1.486101101415243e-07
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 1.336641083290547e-08
+      w: 1
+  - index: 2
+    name: patrol_point_2
+    position:
+      x: 9.594853822979209
+      y: 2.356168046109944e-06
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 1.351064873778624e-06
+      w: 0.9999999999990877
+  - index: 3
+    name: patrol_point_3
+    position:
+      x: 9.594890284921279
+      y: 0.0001123560608978857
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.6490233486399917
+      w: 0.760768488385352
+  - index: 4
+    name: patrol_point_4
+    position:
+      x: 9.865453714082896
+      y: 1.693560317041533
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.6492502218959211
+      w: 0.7605748808421818
+  - index: 5
+    name: patrol_point_5
+    position:
+      x: 9.865787191895034
+      y: 1.693844555897907
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.9980494863680792
+      w: -0.06242774031161373
+  - index: 6
+    name: patrol_point_6
+    position:
+      x: 8.047733913296181
+      y: 1.46551367743319
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.9980494864153375
+      w: -0.06242773955608326
+  - index: 7
+    name: patrol_point_7
+    position:
+      x: 8.047114488714124
+      y: 1.465363297875969
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7090636892966184
+      w: 0.7051444423102762
+  - index: 8
+    name: patrol_point_8
+    position:
+      x: 8.033693422366508
+      y: 3.985295763583189
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7090636893300231
+      w: 0.705144442276686
+  - index: 9
+    name: patrol_point_9
+    position:
+      x: 8.033587498855718
+      y: 3.98556876166555
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.005109515888324647
+      w: 0.9999869463384948
+  - index: 10
+    name: patrol_point_10
+    position:
+      x: 9.259127803682022
+      y: 3.973021087417173
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.00510951570157922
+      w: 0.999986946339449
+  - index: 11
+    name: patrol_point_11
+    position:
+      x: 9.259579002949859
+      y: 3.973304805995995
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.6924204439005383
+      w: 0.7214942334271168
+  - index: 12
+    name: patrol_point_12
+    position:
+      x: 9.465685314749503
+      y: -1.085067983670674
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: -0.6924053284326881
+      w: 0.7215087394883191
+  - index: 13
+    name: patrol_point_13
+    position:
+      x: 9.466292948233351
+      y: -1.085402236323602
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.9970712529685538
+      w: 0.07647820933912741
+  - index: 14
+    name: patrol_point_14
+    position:
+      x: 0.3600113421807305
+      y: -0.8276252277605629
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.9966282384960227
+      w: 0.08204970586368078
+  - index: 15
+    name: patrol_point_15
+    position:
+      x: 0.3601434809220411
+      y: -0.8277634318521508
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7109374623894668
+      w: 0.7032552343006268
+  - index: 16
+    name: patrol_point_16
+    position:
+      x: 0.3504551120795722
+      y: 0.03509183880215166
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7109552335266176
+      w: 0.703237268580894
+  - index: 17
+    name: patrol_point_17
+    position:
+      x: 0.3504551199512913
+      y: 0.03509184542259729
+      z: 0
+    orientation:
+      x: 0
+      y: 0
+      z: 0.7109552337985436
+      w: 0.7032372683059837
