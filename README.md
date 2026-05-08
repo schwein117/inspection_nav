@@ -29,7 +29,7 @@ source devel/setup.bash
 路线文件位于：
 
 ```bash
-/home/schwein/inspection_ws/src/inspection_nav/config/pointN.yaml
+/inspection_ws/src/inspection_nav/config/pointN.yaml
 ```
 
 其中 N 为路线编号，默认是 1。
