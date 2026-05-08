@@ -5,7 +5,7 @@
   <arg name="goal_timeout_sec" default="0.0" />
   <arg name="continue_on_failure" default="false" />
   <arg name="enable_path_visualization" default="false" />
-  <arg name="enable_gimbal_action" default="true" />
+  <arg name="enable_gimbal_action" default="false" />
   <arg name="gimbal_service_name" default="/gimbal/execute_action" />
   <arg name="gimbal_action_name" default="inspect" />
 
