@@ -9,6 +9,25 @@
 
 namespace {
 
+int parseGimbalInspect(const YAML::Node& node) {
+  if (!node || !node["gimbal_inspect"]) {
+    return 0;
+  }
+
+  const YAML::Node flag = node["gimbal_inspect"];
+  try {
+    return flag.as<int>() != 0 ? 1 : 0;
+  } catch (const std::exception&) {
+  }
+
+  try {
+    return flag.as<bool>() ? 1 : 0;
+  } catch (const std::exception&) {
+  }
+
+  return 0;
+}
+
 bool parseNavPoint(const YAML::Node& node, inspection_nav::NavPoint* p) {
   if (p == nullptr || !node || !node["position"] || !node["orientation"]) {
     return false;
@@ -33,6 +52,7 @@ bool parseNavPoint(const YAML::Node& node, inspection_nav::NavPoint* p) {
     return false;
   }
 
+  p->gimbal_inspect = parseGimbalInspect(node);
   return true;
 }
 
@@ -40,6 +60,7 @@ YAML::Node toYamlNode(const inspection_nav::NavPoint& p, std::size_t index) {
   YAML::Node node;
   node["index"] = static_cast<int>(index + 1);
   node["name"] = "patrol_point_" + std::to_string(index + 1);
+  node["gimbal_inspect"] = p.gimbal_inspect;
   node["position"]["x"] = p.x;
   node["position"]["y"] = p.y;
   node["position"]["z"] = p.z;

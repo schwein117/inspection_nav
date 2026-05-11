@@ -8,35 +8,27 @@
 #include "inspection_nav/goal_sender.hpp"
 #include "inspection_nav/inspection_nav_common.hpp"
 
-namespace
-{
+namespace {
 
-  int parseRouteId(const std::vector<std::string> &args)
-  {
-    if (args.size() < 2)
-    {
-      return 1;
-    }
-
-    try
-    {
-      const int route_id = std::stoi(args[1]);
-      if (route_id > 0)
-      {
-        return route_id;
-      }
-    }
-    catch (const std::exception &)
-    {
-    }
-
+int parseRouteId(const std::vector<std::string>& args) {
+  if (args.size() < 2) {
     return 1;
   }
 
-} // namespace
+  try {
+    const int route_id = std::stoi(args[1]);
+    if (route_id > 0) {
+      return route_id;
+    }
+  } catch (const std::exception&) {
+  }
 
-int main(int argc, char **argv)
-{
+  return 1;
+}
+
+}  // namespace
+
+int main(int argc, char** argv) {
   ros::init(argc, argv, "inspection_goal_sender");
   ros::NodeHandle pnh("~");
   ros::NodeHandle nh;
@@ -52,13 +44,21 @@ int main(int argc, char **argv)
   bool continue_on_failure = false;
   bool enable_path_visualization = false;
   bool enable_gimbal_action = false;
+  std::string gimbal_udp_ip;
+  int gimbal_udp_port = 0;
+  double gimbal_udp_timeout_sec = 1.0;
+  double gimbal_udp_retry_interval_sec = 1.0;
 
   pnh.param<std::string>("config_file", config_file, default_config);
   pnh.param<std::string>("goal_frame", goal_frame, inspection_nav::kDefaultGoalFrame);
   pnh.param<double>("goal_timeout_sec", goal_timeout_sec, 0.0);
   pnh.param<bool>("continue_on_failure", continue_on_failure, false);
   pnh.param<bool>("enable_path_visualization", enable_path_visualization, false);
-  pnh.param<bool>("enable_gimbal_action", enable_gimbal_action, false);
+  pnh.param<bool>("enable_gimbal_action", enable_gimbal_action, true);
+  pnh.param<std::string>("gimbal_udp_ip", gimbal_udp_ip, std::string("127.0.0.1"));
+  pnh.param<int>("gimbal_udp_port", gimbal_udp_port, 20001);
+  pnh.param<double>("gimbal_udp_timeout_sec", gimbal_udp_timeout_sec, 1.0);
+  pnh.param<double>("gimbal_udp_retry_interval_sec", gimbal_udp_retry_interval_sec, 1.0);
 
   ROS_INFO("Sender route selected: %d", route_id);
   ROS_INFO("Path visualization: %s", enable_path_visualization ? "enabled" : "disabled");
@@ -81,6 +81,8 @@ int main(int argc, char **argv)
   ros::spinOnce();
 
   inspection_nav::GoalSender sender(pnh, config_file, goal_frame, goal_timeout_sec,
-                                    continue_on_failure, route_id, enable_gimbal_action);
+                                    continue_on_failure, route_id, enable_gimbal_action,
+                                    gimbal_udp_ip, gimbal_udp_port, gimbal_udp_timeout_sec,
+                                    gimbal_udp_retry_interval_sec);
   return sender.run() ? 0 : 2;
 }

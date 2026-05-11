@@ -1,8 +1,12 @@
 #include "inspection_nav/goal_recorder.hpp"
 
+#include <cerrno>
 #include <iostream>
 #include <string>
 #include <thread>
+
+#include <sys/select.h>
+#include <unistd.h>
 
 namespace inspection_nav {
 
@@ -45,6 +49,8 @@ void GoalRecorder::clickedPointCb(const geometry_msgs::PointStamped::ConstPtr& m
     p.qw = 1.0;
   }
 
+  p.gimbal_inspect = 0;
+
   if (writePoint(p)) {
     ROS_INFO(
         "%s[GOAL RECORDED] Route: %d, Source: /clicked_point, point: (%.3f, %.3f, %.3f)%s",
@@ -55,6 +61,27 @@ void GoalRecorder::clickedPointCb(const geometry_msgs::PointStamped::ConstPtr& m
 void GoalRecorder::keyboardLoop() {
   std::string input;
   while (ros::ok() && running_.load()) {
+    fd_set readfds;
+    FD_ZERO(&readfds);
+    FD_SET(STDIN_FILENO, &readfds);
+
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 200000;
+
+    const int ret = ::select(STDIN_FILENO + 1, &readfds, nullptr, nullptr, &tv);
+    if (ret < 0) {
+      if (errno == EINTR) {
+        continue;
+      }
+      ROS_WARN_THROTTLE(5.0, "[RECORDER] stdin select failed, errno=%d", errno);
+      continue;
+    }
+
+    if (ret == 0) {
+      continue;
+    }
+
     if (!std::getline(std::cin, input)) {
       if (!ros::ok()) {
         break;
@@ -63,11 +90,17 @@ void GoalRecorder::keyboardLoop() {
       continue;
     }
 
+    if (!ros::ok()) {
+      break;
+    }
+
     NavPoint p;
     if (!getLatestOdomPoint(&p)) {
       ROS_WARN("[RECORD FAILED] Route: %d, /odom has not been received yet", route_id_);
       continue;
     }
+
+    p.gimbal_inspect = 1;
 
     if (writePoint(p)) {
       ROS_INFO(

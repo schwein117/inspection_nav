@@ -4,41 +4,57 @@
 #include <move_base_msgs/MoveBaseAction.h>
 #include <ros/ros.h>
 
+#include <netinet/in.h>
+
+#include <cstddef>
 #include <string>
 
 #include "inspection_nav/inspection_nav_common.hpp"
 
-namespace inspection_nav
-{
+namespace inspection_nav {
 
-  class GoalSender
-  {
-  public:
-    GoalSender(ros::NodeHandle &nh,
-               const std::string &config_file,
-               const std::string &goal_frame,
-               double goal_timeout_sec,
-               bool continue_on_failure,
-               int route_id,
-               bool enable_gimbal_action);
+class GoalSender {
+ public:
+  GoalSender(ros::NodeHandle& nh,
+             const std::string& config_file,
+             const std::string& goal_frame,
+             double goal_timeout_sec,
+             bool continue_on_failure,
+             int route_id,
+             bool enable_gimbal_action,
+             const std::string& gimbal_udp_ip,
+             int gimbal_udp_port,
+             double gimbal_udp_timeout_sec,
+             double gimbal_udp_retry_interval_sec);
 
-    bool run();
+  ~GoalSender();
 
-  private:
-    bool notifyGimbalAndWait(const NavPoint &p, std::size_t index, std::size_t total);
+  bool run();
 
-    ros::NodeHandle nh_;
-    std::string config_file_;
-    std::string goal_frame_;
-    double goal_timeout_sec_;
-    bool continue_on_failure_;
-    int route_id_;
-    bool enable_gimbal_action_;
-    std::string gimbal_service_name_;
-    std::string gimbal_action_name_;
+ private:
+  bool notifyGimbalAndWait(std::size_t index, std::size_t total);
+  bool ensureGimbalSocket();
+  bool sendGimbalRequest(const std::string& payload);
+  bool waitForGimbalResponse(std::string* response);
+  bool responseAllowsContinue(const std::string& response) const;
+  std::string buildGimbalRequest(std::size_t index, std::size_t total) const;
 
-    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac_;
-    ros::ServiceClient gimbal_client_;
-  };
+  ros::NodeHandle nh_;
+  std::string config_file_;
+  std::string goal_frame_;
+  double goal_timeout_sec_;
+  bool continue_on_failure_;
+  int route_id_;
+  bool enable_gimbal_action_;
+  std::string gimbal_udp_ip_;
+  int gimbal_udp_port_;
+  double gimbal_udp_timeout_sec_;
+  double gimbal_udp_retry_interval_sec_;
 
-} // namespace inspection_nav
+  int gimbal_socket_;
+  sockaddr_in gimbal_addr_;
+
+  actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac_;
+};
+
+}  // namespace inspection_nav

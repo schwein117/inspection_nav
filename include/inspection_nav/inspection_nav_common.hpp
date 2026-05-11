@@ -13,6 +13,7 @@ struct NavPoint {
   double qy;
   double qz;
   double qw;
+  int gimbal_inspect;  // 0: skip gimbal, 1: wait for gimbal response
 };
 
 constexpr const char* kColorGreen = "\033[1;32m";
