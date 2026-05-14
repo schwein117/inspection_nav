@@ -124,6 +124,8 @@ roslaunch inspection_nav goal_sender.launch route_id:=N enable_path_visualizatio
 goal_sender 在每个目标点到达后，如果 `gimbal_inspect=1` 且 `enable_gimbal_action=true`，则通过 UDP
 向云台发送指令并等待回复；未收到允许继续的响应时会在原地等待，并在终端提示等待云台。
 
+云台联调测试脚本在config文件夹内
+
 ### UDP 协议
 
 - 传输方式：UDP 单播，文本格式（ASCII）。
